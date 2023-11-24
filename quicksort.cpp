@@ -1,8 +1,4 @@
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
+#include "quicksort.h"
 
 using std::vector;
 using std::cout;
