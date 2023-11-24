@@ -63,7 +63,6 @@ void QuicksortRec(vector<T>& elements, int l, int r)
     }
 }
 
-//Must implement operator< for vector element type
 template<typename T>
 void Quicksort(vector<T>& elements)
 {
