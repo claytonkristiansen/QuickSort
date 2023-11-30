@@ -1,12 +1,15 @@
+CFLAGS= -g -Wall -Wextra
+
 all: quicksort.o
 	mkdir build
-	g++ -o build/quicksort quicksort.o
+	g++ -g -o build/quicksort quicksort.o
 
 quicksort.o: quicksort.h quicksort.cpp
-	g++ -c quicksort.cpp
+	g++ -g -c quicksort.cpp
 
 run: 
 	build/quicksort
 
 clean:
 	rm -rf build
+	rm *.o
