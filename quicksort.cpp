@@ -4,15 +4,17 @@ using std::vector;
 using std::cout;
 using std::cin;
 
+static int tracker = 0;
+
 template<typename T>
 std::string VectorToString(vector<T> vec)
 {
     std::stringstream ss;
     ss << "[";
-    for(int i = 0; i < vec.size(); ++i)
+    for (int i = 0; i < vec.size(); ++i)
     {
         ss << vec[i];
-        if(i == vec.size() - 1)
+        if (i == vec.size() - 1)
         {
             ss << "]";
         }
@@ -27,36 +29,48 @@ std::string VectorToString(vector<T> vec)
 template<typename T>
 void Swap(vector<T>& elements, int i1, int i2)
 {
+    if(i1 == i2)
+    {
+        return;
+    }
     T temp = elements[i1];
     elements[i1] = elements[i2];
     elements[i2] = temp;
 }
 
 template<typename T>
-int Partition(vector<T>& elements, int l, int r)
-{
-    int pivot = l;
-    ++l;
-    for(; l <= r; ++l)
-    {
-        if(elements[l] < elements[pivot])
-        {
-            Swap(elements, pivot, l);
-            Swap(elements, l, ++pivot);
+int Partition(vector<T>& elements, int l, int r) {
+    tracker++;
+    int pivot = l++;
+    T pivotVal = elements[pivot];
+    
+    while (l < r) {
+        if (elements[l] < pivotVal) {
+            l++;
+        }
+        else {
+            Swap(elements, l, r--);
         }
     }
+
+    if (elements[l] < pivotVal) {
+        Swap(elements, pivot, l);
+        pivot = l;
+    }
+    else {
+        Swap(elements, pivot, l - 1);
+        pivot = l - 1;
+    }
+
     return pivot;
 }
 
 template<typename T>
-void QuicksortRec(vector<T>& elements, int l, int r)
-{
-     if(l >= r)
-    {
+void QuicksortRec(vector<T>& elements, int l, int r) {
+    if (l >= r) {
         return;
     }
-    else
-    {
+    else {
         int pivot = Partition(elements, l, r);
         QuicksortRec(elements, l, pivot);
         QuicksortRec(elements, pivot + 1, r);
@@ -73,14 +87,14 @@ int main(int arc, char** argv)
 {
     vector<int> testVec;
     std::ifstream inputFile("inputs.txt");
-    while(!inputFile.eof())
+    while (!inputFile.eof())
     {
         std::stringstream ss;
         char c;
         inputFile.read(&c, 1);
-        while(c != '\n' && !inputFile.eof())
+        while (c != '\n' && !inputFile.eof())
         {
-            if(c == ' ' || c == ',')
+            if (c == ' ' || c == ',')
             {
                 testVec.push_back(std::stoi(ss.str()));
                 ss.str("");
