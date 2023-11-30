@@ -1,0 +1,12 @@
+Quicksort(array, leftBound, rightBound):
+    
+    //Select arbitrary pivot
+    pivotIndex = SelectPivot()
+    
+    index starting at left:
+        if (array[index] < array[pivotIndex]):
+            swap array[index] with array[pivotIndex]
+
+            //This allows the pivot to move wh
+            swap value now at array[index] with array[pivotIndex + 1]
+            
