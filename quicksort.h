@@ -8,10 +8,6 @@
 template<typename T>
 std::string VectorToString(std::vector<T> vec);
 
-/*  Swaps the position of two elements in a Vector in place*/
-template<typename T>
-void Swap(std::vector<T>& elements, int i1, int i2);
-
 /*  Returns the position where all the elements to the left 
     are less than the element originally in the "l" position.
     Onlt does this on the range between "l" and "r" */

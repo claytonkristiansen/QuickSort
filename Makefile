@@ -1,6 +1,7 @@
 CFLAGS= -g -Wall -Wextra
 
 all: quicksort.o
+	rm -rf build
 	mkdir build
 	g++ -g -o build/quicksort quicksort.o
 

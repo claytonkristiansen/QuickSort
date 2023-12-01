@@ -25,14 +25,6 @@ std::string VectorToString(vector<T> vec)
 }
 
 template<typename T>
-void Swap(vector<T>& elements, int i1, int i2)
-{
-    T temp = elements[i1];
-    elements[i1] = elements[i2];
-    elements[i2] = temp;
-}
-
-template<typename T>
 int Partition(vector<T>& elements, int l, int r)
 {
     int pivot = l;
@@ -41,8 +33,10 @@ int Partition(vector<T>& elements, int l, int r)
     {
         if(elements[l] < elements[pivot])
         {
-            Swap(elements, pivot, l);
-            Swap(elements, l, ++pivot);
+            T temp = elements[pivot];
+            elements[pivot] = elements[l];
+            elements[l] = elements[++pivot];
+            elements[pivot] = temp;
         }
     }
     return pivot;
