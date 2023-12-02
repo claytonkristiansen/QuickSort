@@ -1,12 +1,60 @@
-Quicksort(array, leftBound, rightBound):
-    
-    //Select arbitrary pivot
-    pivotIndex = SelectPivot()
-    
-    index starting at left:
-        if (array[index] < array[pivotIndex]):
-            swap array[index] with array[pivotIndex]
+// left and right are the indexes of the left and right sound of the section this recursive step will work on
+Quicksort(array, leftIndex, rightIndex):
 
-            //This allows the pivot to move wh
-            swap value now at array[index] with array[pivotIndex + 1]
+    // First check the root case to know if you need to return up.
+    if (leftIndex == rightIndex)
+        return
+    
+    // Values we can manipulate
+    left = leftIndex
+    right = rightIndex
+
+    // Select left side as pivot
+    pivotIndex = left
+
+    // Increment left
+    left++
+    
+    loop starting at left until reaches right:
+        if (array[left] < array[pivotIndex]):
+            swap array[left] with array[pivotIndex]
+
+            // Pivot value is now at left position.
+            // Swapping again moves pivotIndex over 1 while still operating in place.
+            swap array[left] with array[pivotIndex + 1]
+            pivotIndex++
+            l++
+
+
+
+            // This operation would look something like this halfway through
+            // (l is left, p is pivotIndex, r is right):
+            //
+            //  initial:
+            //      p   l         r
+            //  3 5 6 8 2 7 9 1 0 4
+            //  first swap:
+            //      p   l         r
+            //  3 5 2 8 6 7 9 1 0 4
+            //  second swap:
+            //        p   l       r
+            //  3 5 2 6 8 7 9 1 0 4
+            //
+            // This repeats until all elements less than 6 are to its left and
+            // all elements greater than 6 are to its right.
+            // Keep going until left index reaches right side.
+            //
+            // Feel free to draw it out to see the process!
+
+
+    // Once this loop is over, you will have a pivot index where all elements
+    // to its left are less and all elements to its right are greater.
+
+    // Now you call the Quicksort function twice.
+    // Once for the first section, and again for the other section
+    Quicksort(array, leftIndex, pivotIndex)
+    Quicksort(array, pivotIndex + 1, rightIndex)
+
+    // Once each recursive tree has returned back up to the initial calling
+    // function, the array has been sorted!
             
